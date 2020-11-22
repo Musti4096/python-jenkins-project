@@ -39,5 +39,12 @@ pipeline{
                 }
             }
         }
+        stage('build'){
+            agent any
+            steps{
+                sh "docker build -t mustafa/handson-jenkins ."
+                sh "docker tag mustafa/handson-jenkins 016356827677.dkr.ecr.us-east-1.amazonaws.com/mustafa/handson-jenkins:latest"
+            }
+        }   
     }
 }
