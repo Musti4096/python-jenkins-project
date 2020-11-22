@@ -63,10 +63,10 @@ At the end of the this hands-on training, students will be able to;
     $ systemctl status jenkins
     ```
 
-- Get the administrator password from `var/jenkins_home/secrets/initialAdminPassword` file.
+- Get the administrator password from `var/lib/jenkins_home/secrets/initialAdminPassword` file.
 
     ```bash
-    $ cat /var/jenkins_home/secrets/initialAdminPassword
+    $ cat /var/lib/jenkins_home/secrets/initialAdminPassword
     ```
 
 - Enter the temporary password to unlock the Jenkins.
