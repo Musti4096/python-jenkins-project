@@ -22,7 +22,7 @@ pipeline{
                 }   
             }
         }
-        stage('test') {
+        stage("test") {
             agent {
                 docker {
                     image 'python:alpine'
@@ -33,7 +33,7 @@ pipeline{
                     sh 'python -m pytest -v --junit-xml results.xml src/appTest.py'
                 }
             }
-            posts {
+            post {
                 always {
                     junit 'results.xml'
                 }
