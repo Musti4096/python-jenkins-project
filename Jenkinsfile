@@ -22,7 +22,7 @@ pipeline{
                 }   
             }
         }
-        stage('test'){
+        stage('test') {
             agent {
                 docker {
                     image 'python:alpine'
