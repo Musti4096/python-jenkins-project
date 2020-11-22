@@ -6,6 +6,7 @@ pipeline{
         MYSQL_DATABASE_USER = "admin"
         MYSQL_DATABASE_DB = "phonebook"
         MYSQL_DATABASE_PORT = 3306
+        PATH="/usr/local/bin/:${env.PATH}"
     }
     stages{
         stage("compile"){
@@ -42,8 +43,15 @@ pipeline{
         stage('build'){
             agent any
             steps{
-                sh "docker build -t mustafa/handson-jenkins ."
-                sh "docker tag mustafa/handson-jenkins 016356827677.dkr.ecr.us-east-1.amazonaws.com/mustafa/handson-jenkins:latest"
+                sh "docker build -t mustafa ."
+                sh "docker tag mustafa:latest 016356827677.dkr.ecr.us-east-1.amazonaws.com/mustafa:latest"
+            }
+        }
+        stage('push'){
+            agent any
+            steps{
+                sh "aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 016356827677.dkr.ecr.us-east-1.amazonaws.com"
+                sh "docker push 016356827677.dkr.ecr.us-east-1.amazonaws.com/mustafa:latest"
             }
         }   
     }
